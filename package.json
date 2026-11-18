@@ -9,7 +9,9 @@
     "react-native": "0.88.1"
   },
   "devDependencies": {
+    "@supabase/cli-windows-x64": "^3.2.0",
     "@types/react": "~19.3.0",
+    "supabase": "^3.2.0",
     "typescript": "~6.0.3"
   },
   "scripts": {
