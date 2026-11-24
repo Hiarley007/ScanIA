@@ -1,14 +1,29 @@
+
 import 'react-native-url-polyfill/auto';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient } from '@supabase/supabase-js';
 import { AppState } from 'react-native';
+
+// ======================================================
+// CONFIGURAÇÕES DO SUPABASE
+// ======================================================
+
 const url = process.env.EXPO_PUBLIC_SUPABASE_URL;
-const key = process.env.EXPO_PUBLIC_SUPABASE_KEY;
+
+const key = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+
+// Verifica se as variáveis de ambiente estão configuradas
 if (!url || !key) {
   throw new Error(
-    'Variáveis do Supabase ausentes. Confira o .env e reinicie com: npx expo start -c',
+    'Variáveis do Supabase ausentes. Confira o arquivo .env e reinicie com: npx expo start -c',
   );
 }
+
+// ======================================================
+// CLIENTE SUPABASE
+// ======================================================
+
 export const supabase = createClient(url, key, {
   auth: {
     storage: AsyncStorage,
@@ -17,8 +32,16 @@ export const supabase = createClient(url, key, {
     detectSessionInUrl: false,
   },
 });
-// Renova o token só enquanto o app está em primeiro plano.
+
+// ======================================================
+// GERENCIAMENTO AUTOMÁTICO DA SESSÃO
+// ======================================================
+
+// Renova o token enquanto o aplicativo estiver em primeiro plano.
 AppState.addEventListener('change', (state) => {
-  if (state === 'active') supabase.auth.startAutoRefresh();
-  else supabase.auth.stopAutoRefresh();
+  if (state === 'active') {
+    supabase.auth.startAutoRefresh();
+  } else {
+    supabase.auth.stopAutoRefresh();
+  }
 });
