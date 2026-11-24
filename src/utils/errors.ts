@@ -14,7 +14,7 @@ export function friendlyError(error: unknown): string {
     return 'Confirme seu e-mail antes de entrar.';
   }
   if (/network request failed|failed to fetch/i.test(message)) {
-    return 'Sem conexão com a internet.';
+    return 'Não foi possível acessar o servidor do Supabase. Confira sua conexão e a URL do projeto.';
   }
   if (/rate limit/i.test(message)) {
     return 'Muitas tentativas. Aguarde um instante e tente de novo.';
