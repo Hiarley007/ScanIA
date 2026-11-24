@@ -1,14 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { ActivityIndicator, Alert, Image, StyleSheet, Text, View } from 'react-native';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { Screen } from '@/components/Screen';
@@ -92,9 +85,7 @@ export default function ScanScreen() {
       {busy ? (
         <View style={styles.progress}>
           <ActivityIndicator color={colors.primary} />
-          <Text style={styles.progressText}>
-            {step ? STEP_LABEL[step] : ''}
-          </Text>
+          <Text style={styles.progressText}>{step ? STEP_LABEL[step] : ''}</Text>
         </View>
       ) : image ? (
         <View style={styles.actions}>
@@ -124,9 +115,7 @@ export default function ScanScreen() {
         <Text style={styles.tip}>
           • Deixe a nota inteira e esticada, de cima para baixo.
         </Text>
-        <Text style={styles.tip}>
-          • Evite reflexos e mantenha o celular parado.
-        </Text>
+        <Text style={styles.tip}>• Evite reflexos e mantenha o celular parado.</Text>
       </Card>
     </Screen>
   );

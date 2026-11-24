@@ -4,13 +4,17 @@ import type { ColorValue } from 'react-native';
 import { colors } from '@/theme';
 import type { IconName } from '@/utils/icons';
 function tabIcon(name: IconName) {
-  return ({ color, size }: { color: ColorValue; size: number }) => (
-    <Ionicons
-      name={name}
-      size={size}
-      color={typeof color === 'string' ? color : undefined}
-    />
-  );
+  function TabIcon({ color, size }: { color: ColorValue; size: number }) {
+    return (
+      <Ionicons
+        name={name}
+        size={size}
+        color={typeof color === 'string' ? color : undefined}
+      />
+    );
+  }
+
+  return TabIcon;
 }
 
 export default function TabsLayout() {

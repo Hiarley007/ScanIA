@@ -23,13 +23,19 @@ export function DonutChart({
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const total = data.reduce((sum, slice) => sum + slice.value, 0);
-  let consumed = 0;
-  const arcs = data.map((slice) => {
-    const length = total > 0 ? (slice.value / total) * circumference : 0;
-    const arc = { ...slice, length, offset: consumed };
-    consumed += length;
-    return arc;
-  });
+  const arcs = data.reduce<{
+    items: (DonutSlice & { length: number; offset: number })[];
+    consumed: number;
+  }>(
+    (state, slice) => {
+      const length = total > 0 ? (slice.value / total) * circumference : 0;
+      return {
+        items: [...state.items, { ...slice, length, offset: state.consumed }],
+        consumed: state.consumed + length,
+      };
+    },
+    { items: [], consumed: 0 },
+  ).items;
   return (
     <View style={{ width: size, height: size }}>
       <Svg width={size} height={size}>
