@@ -35,7 +35,14 @@ export default function ReceiptsScreen() {
             onPress={() => router.push(`/receipt/${item.id}`)}
           />
         )}
-        refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefetching}
+            onRefresh={async () => {
+              await refetch();
+            }}
+          />
+        }
       />
     </Screen>
   );
