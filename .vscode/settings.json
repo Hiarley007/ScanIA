@@ -1,0 +1,8 @@
+
+{
+  "deno.enable": true,
+  "deno.enablePaths": [
+    "./supabase/functions/scan-receipt"
+  ],
+  "deno.lint": true
+}
