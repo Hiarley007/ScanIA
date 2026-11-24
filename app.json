@@ -15,7 +15,8 @@
           "cameraPermission": "O ScanIA usa a câmera para fotografar suas notas fiscais.",
           "photosPermission": "O ScanIA acessa suas fotos para ler notas fiscais salvas na galeria."
         }
-      ]
+      ],
+      "expo-status-bar"
     ],
     "ios": {
       "supportsTablet": true,
